@@ -9,10 +9,10 @@ cont = 0
 
 class ScoreData(server_pb2_grpc.ScoreDataServicer):
 
-    def ConsultScore (self):
+    def ConsultScore (self, request, context):
         return server_pb2.ValueScore(score=cont) 
 
-    def UpdateScore (self): 
+    def UpdateScore (self, request, context): 
         cont = cont + 1
         return server_pb2.ValueScore(score=cont) 
 
