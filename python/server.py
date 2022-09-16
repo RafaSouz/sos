@@ -2,18 +2,27 @@ from concurrent import futures
 import logging
 import const
 import grpc
+from scoreGRPC.client import UpdateScore
 import server_pb2
 import server_pb2_grpc
 
 cont = 0
+calc = 0
 
 class ScoreData(server_pb2_grpc.ScoreDataServicer):
 
     def ConsultScore (self, request, context):
         return server_pb2.ValueScore(score=cont) 
 
-    def UpdateScore (self, request, context): 
-        cont = cont + 1
+    def CalcScore (self, request, context):
+        global calc
+        calc = request.value
+        return UpdateScore()
+
+    def UpdateScore (self, request, context):
+        global cont
+        global calc
+        cont = calc + cont
         return server_pb2.ValueScore(score=cont) 
 
 def serve():
