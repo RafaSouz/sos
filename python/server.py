@@ -2,7 +2,6 @@ from concurrent import futures
 import logging
 import const
 import grpc
-from scoreGRPC.client import UpdateScore
 import server_pb2
 import server_pb2_grpc
 
