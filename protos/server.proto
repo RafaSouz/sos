@@ -10,7 +10,7 @@ package score;
 service ScoreData {
   rpc ConsultScore (EmptyMessage) returns (ValueScore) {}
   rpc UpdateScore (EmptyMessage) returns (ValueScore) {}
-  rpc CalcScore (ValueScore) retuns (EmptyMessage) {}
+  rpc CalcScore (ValueScore) returns (EmptyMessage) {}
 }
 
 message ValueScore{
