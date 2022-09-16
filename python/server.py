@@ -5,16 +5,16 @@ import grpc
 import server_pb2
 import server_pb2_grpc
 
-score = 0
+cont = 0
 
 class ScoreData(server_pb2_grpc.ScoreDataServicer):
 
     def ConsultScore (self):
-        return server_pb2.ValueScore(score) 
+        return server_pb2.ValueScore(score=cont) 
 
     def UpdateScore (self): 
-        score = score + 1
-        return server_pb2.ValueScore(score) 
+        cont = cont + 1
+        return server_pb2.ValueScore(score=cont) 
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
