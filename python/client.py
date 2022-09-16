@@ -17,7 +17,7 @@ def UpdateScore(score):
     with grpc.insecure_channel(const.CHAT_SERVER_HOST) as channel:
         stub = server_pb2_grpc.ScoreDataStub(channel)
 
-        calc = stub.CalcScore(server_pb2.Player(score=score))
+        calc = stub.CalcScore(server_pb2.ValueScore(score=score))
         print(f'Valor a ser adicionado: {calc.score}\n')
 
         new = stub.UpdateScore(server_pb2.EmptyMessage())
