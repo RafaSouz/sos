@@ -13,16 +13,16 @@ class ScoreData(server_pb2_grpc.ScoreDataServicer):
     def ConsultScore (self, request, context):
         return server_pb2.ValueScore(score=cont) 
 
-    def CalcScore (self, request, context):
-        global calc
-        calc = request.value
-        return UpdateScore()
-
     def UpdateScore (self, request, context):
         global cont
         global calc
         cont = calc + cont
         return server_pb2.ValueScore(score=cont) 
+
+    def CalcScore (self, request, context):
+        global calc
+        calc = request.score
+        return server_pb2.ValueScore(score=calc)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
