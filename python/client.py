@@ -18,7 +18,7 @@ def UpdateScore(value):
         stub = server_pb2_grpc.ScoreDataStub(channel)
 
         calc = stub.CalcScore(server_pb2.ValueScore(value=value))
-        print(f'Valor a ser adicionado: {calc.value}\n')
+        print(f'Valor a ser adicionado: {calc.score}\n')
 
         new = stub.UpdateScore(server_pb2.EmptyMessage())
         print(f'Novo Score: {new}\n')
