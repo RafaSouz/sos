@@ -13,9 +13,13 @@ def ShowScore():
         response = stub.ConsultScore(server_pb2.EmptyMessage())
         print(f'Score Atual: {response}\n')
 
-def UpdateScore():
+def UpdateScore(value):
     with grpc.insecure_channel(const.CHAT_SERVER_HOST) as channel:
         stub = server_pb2_grpc.ScoreDataStub(channel)
+
+        calc = stub.CalcScore(server_pb2.Player(value=value))
+        print(f'Valor a ser adicionado: {calc.value}\n')
+
         new = stub.UpdateScore(server_pb2.EmptyMessage())
         print(f'Novo Score: {new}\n')
 
@@ -25,5 +29,9 @@ if __name__ == '__main__':
         choice = int(input("Digite 1 para ver o Score e 2 para aumentar o Score: "))
         if(choice == 1):
             ShowScore()
-        else:   
-            UpdateScore()
+        else:
+            value = int(input("Valor a ser adicionado ao score: "))
+            if(value==0):
+                print(f'Valor precisa ser maior que 0 \n')
+            else:
+                UpdateScore(value)
