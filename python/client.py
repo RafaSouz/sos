@@ -7,13 +7,13 @@ import server_pb2_grpc
 import sys
 import const
 
-def ShowScore(self, request, context):
+def ShowScore():
     with grpc.insecure_channel(const.CHAT_SERVER_HOST) as channel:
         stub = server_pb2_grpc.ScoreDataStub(channel)
         response = stub.ConsultScore(server_pb2.EmptyMessage())
         print(f'Score Atual: {response}\n')
 
-def UpdateScore(self, request, context):
+def UpdateScore():
     with grpc.insecure_channel(const.CHAT_SERVER_HOST) as channel:
         stub = server_pb2_grpc.ScoreDataStub(channel)
         new = stub.UpdateScore(server_pb2.EmptyMessage())
