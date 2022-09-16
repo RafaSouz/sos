@@ -14,6 +14,6 @@ service ScoreData {
 }
 
 message ValueScore{
-    int score = 1;
+    int32 score = 1;
 }
 message EmptyMessage {}
