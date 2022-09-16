@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.score";
+option java_outer_classname = "ScoreService";
+option objc_class_prefix = "JS";
+
+package score;
+
+service ScoreData {
+  rpc ConsultScore (EmptyMessage) returns (ValueScore) {}
+  rpc UpdateScore (EmptyMessage) returns (ValueScore) {}
+}
+
+message ValueScore{
+    int score = 1;
+}
+message EmptyMessage {}
